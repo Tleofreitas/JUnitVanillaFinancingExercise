@@ -106,4 +106,32 @@ public class FinancingTests {
 				fin.setIncome(1800.0);
 			});
 		}
+		
+	// Testes de setMonth ---------------------------------------------------------------------------------------
+		
+		// Atualizar o valor Income quando os dados forem válidos
+		@Test
+		public void setMonthShouldSetDataWhenValidData() {
+			// Arrange
+			Financing fin = new FinancingFactory().creatFinancing(100000.0, 2000.0, 80);
+						
+			// Act
+			fin.setMonths(100);
+						
+			// Assert
+			Assertions.assertEquals(800.0, fin.quota());			
+		}
+		
+		// Lançar exceção quando os dados forem válidos (valor Income)
+		@Test
+		public void setMonthShouldExceptionWhenInvalidData() {
+			// Assertions
+			Assertions.assertThrows(IllegalArgumentException.class, () -> {
+				// Arrange
+				Financing fin = new FinancingFactory().creatFinancing(100000.0, 2000.0, 80);
+							
+				// Act
+				fin.setMonths(79);
+			});
+		}
 }
