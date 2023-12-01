@@ -47,4 +47,35 @@ public class FinancingTests {
 				Financing fin = new FinancingFactory().creatFinancing(totalAmount, income, months);			
 			});
 		}
+	
+	// Testes de setTotalAmount ---------------------------------------------------------------------------------
+		
+		// Atualizar o valor Total quando os dados forem válidos
+		@Test
+		public void newTotalAmountShouldSetTotalAmountWhenValidData() {
+			// Arrange
+			Financing fin = new FinancingFactory().creatFinancing(100000.0, 2000.0, 80);
+			
+			// Act
+			fin.setTotalAmount(90000.0);
+			
+			// Assert
+			Assertions.assertEquals(90000.0, fin.getTotalAmount());	
+			Assertions.assertEquals(900.0, fin.quota());		
+		}
+		
+		// Lançar exceção quando os dados forem válidos (valor Total)
+		@Test
+		public void newTotalAmountShouldExceptionWhenWhenInvalidDat() {
+			// Assertions
+			Assertions.assertThrows(IllegalArgumentException.class, () -> {
+				// Arrange
+				Double totalAmount = 100001.0;
+				Double income = 2000.0;
+				Integer months = 20;
+									
+				// Act
+				Financing fin = new FinancingFactory().creatFinancing(totalAmount, income, months);			
+			});	
+		}
 }
