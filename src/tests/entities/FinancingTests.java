@@ -78,4 +78,32 @@ public class FinancingTests {
 				Financing fin = new FinancingFactory().creatFinancing(totalAmount, income, months);			
 			});	
 		}
+	
+	// Testes de setIncome ---------------------------------------------------------------------------------------
+	
+		// Atualizar o valor Income quando os dados forem válidos
+		@Test
+		public void setIncomeShouldSetDataWhenValidData() {
+			// Arrange
+			Financing fin = new FinancingFactory().creatFinancing(100000.0, 2000.0, 80);
+						
+			// Act
+			fin.setIncome(2500.0);
+						
+			// Assert
+			Assertions.assertEquals(1000.0, fin.quota());			
+		}
+		
+		// Lançar exceção quando os dados forem válidos (valor Income)
+		@Test
+		public void setIncomeShouldExceptionWhenInvalidData() {
+			// Assertions
+			Assertions.assertThrows(IllegalArgumentException.class, () -> {
+				// Arrange
+				Financing fin = new FinancingFactory().creatFinancing(100000.0, 2000.0, 80);
+				
+				// Act
+				fin.setIncome(1800.0);
+			});
+		}
 }
