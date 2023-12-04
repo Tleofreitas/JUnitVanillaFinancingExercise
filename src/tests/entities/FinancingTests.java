@@ -134,4 +134,34 @@ public class FinancingTests {
 				fin.setMonths(79);
 			});
 		}
+	
+	// Testes de entry ---------------------------------------------------------------------------------------
+		
+		// Calcular corretamente o valor da entrada
+		@Test
+		public void ObjShouldCalculateInputWhenValidData() {
+			// Arrange
+			Double expectedValue = 20000.00;
+								
+			// Act
+			Financing fin = new FinancingFactory().creatFinancing(100000.0, 2000.0, 80);
+								
+			// Assert
+			Assertions.assertEquals(expectedValue, fin.entry());			
+		}
+		
+	// Testes de quota ---------------------------------------------------------------------------------------
+		
+		// Calcular corretamente o valor da prestação
+		@Test
+		public void ObjShouldCalculateInstallmentWhenValidData() {
+			// Arrange
+			Double expectedValue = 1000.00;
+										
+			// Act
+			Financing fin = new FinancingFactory().creatFinancing(100000.0, 2000.0, 80);
+										
+			// Assert
+			Assertions.assertEquals(expectedValue, fin.quota());			
+		}
 }
